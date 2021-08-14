@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/layout"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:text="Điều khoản sử dụng"
+        android:textColor="@color/color_black"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginLeft="10dp"
+        android:text="@string/please_read_rules"
+        android:textColor="@color/color_black"/>
+<ScrollView
+    android:layout_marginTop="5dp"
+    android:layout_width="match_parent"
+    android:padding="20dp"
+    android:layout_height="540dp">
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.ducanh.update.rulesMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/web"
+        android:layout_height="20dp"
+        android:gravity="right"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:text="Tôi đồng ý với tất cả "
+            android:textColor="@color/color_gray"
+            android:id="@+id/oknhoa"
+            android:textStyle="italic"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="điều khoản"
+            android:textColor="@color/color_red"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_gray"
+            android:gravity="center_horizontal"
+            android:text=" của ứng dụng"
+            android:textSize="15dp"
+            android:textStyle="italic" />
+    </LinearLayout>
+</LinearLayout>

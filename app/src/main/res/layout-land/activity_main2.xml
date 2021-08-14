@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
+
+    <View
+        android:id="@+id/wage1"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        app:hintTextColor="@color/color_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pass">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ten"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/input_pass" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="188dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/botton_shape"
+        android:text="Đăng xuất"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="15dp"
+        app:layout_constraintStart_toEndOf="@+id/pass"
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile" />
+
+    <Button
+        android:id="@+id/chonanh"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/botton_shape"
+        android:text="Chọn ảnh"
+        android:textAllCaps="false"
+        android:textColor="@color/color_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+    <Button
+        android:id="@+id/upanh"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/botton_shape"
+        android:text="Up ảnh"
+        android:textAllCaps="false"
+        android:textColor="@color/color_white"
+        app:layout_constraintStart_toEndOf="@+id/chonanh"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+
+    <Button
+        android:id="@+id/edit_profile"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="188dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/botton_shape"
+        android:text="Sửa thông tin"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/pass"
+        app:layout_constraintTop_toBottomOf="@+id/wage1" />
+
+    <TextView
+        android:id="@+id/pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/text"
+        android:elevation="10dp"
+        android:padding="10dp"
+        android:text="PASSWORD"
+        android:textColor="@color/color_gray"
+        android:textSize="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/wage2" />
+
+    <View
+        android:id="@+id/wage2"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/ic_wave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wage1" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="210dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/user_profile"
+        android:elevation="10dp"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/wage1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/wage1">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:elevation="10dp"
+            app:civ_border_color="@color/colorBlue"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif"
+            android:text="null"
+            android:textColor="@color/colorBlue"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/downlaod"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/text"
+        android:elevation="10dp"
+        android:text="@string/downlaod_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/logout" />
+
+    <ImageView
+        android:id="@+id/hinh"
+        android:layout_width="400dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/color_white"
+        android:padding="1dp"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/downlaod"
+        app:layout_constraintVertical_bias="0.514"
+        app:srcCompat="@drawable/nodata" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Lê Thảo Ly</string>
+    <string name="update">Plese update your app.</string>
+    <string name="login_success">Login Successfully</string>
+    <string name="login_fail">You can not login now.Wrong email or password</string>
+    <string name="empty">Emai or Password is not empty</string>
+    <string name="pass_image">Vui lòng nhập pass ảnh trước</string>
+    <string name="no_image_find">Không tồn tại ảnh trên hệ thống</string>
+    <string name="get_image">1.Nếu muốn xem ảnh thì nhập pass vào ô input và chọn xem ảnh.(Nhấn giữ vào ảnh để tải về máy)\n2.Muốn up ảnh thì nhấn vào ô up ảnh sau đó chọn ảnh rồi nhập pass vào ô input rồi nhấn lại vào ô up ảnh là xong</string>
+    <string name="input_pass">Ô này để nhập password nhá :v</string>
+    <string name="downlaod_image">Tải ảnh này</string>
+    <string name="title_activity_hello2">hello2</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reques_body">Vì ứng dụng sẽ lưu ảnh vào bộ nhớ trong của máy nên bạn cần phải cấp quyền đọc ghi cho ứng dụng.Vui lòng nhấn next và tiến hành cấp quyền nhé!</string>
+    <string name="request">Yêu cầu cấp quyền !</string>
+    <string name="please_read_rules">Vui lòng đọc kĩ toàn bộ điều khoản mà chúng tôi đề ra.Xin cảm ơn !</string>
+    <string name="good_letgo">Tuyệt vời!!Đi nào</string>
+    <string name="wait1"> giây nữa tôi mở đọc đi =))</string>
+    <string name="wait">Đọc kiểu gì nhanh thế =)) </string>
+    <string name="agree">Vui lòng tích vào đồng ý để tiêp tục</string>
+    <string name="rules">rules</string>
+    <string name="file_name">USER.txt</string>
+</resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileEdit">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginRight="20dp"
+    android:text="Nhập thông tin của bạn"
+    android:padding="10dp"
+    android:background="@drawable/text"
+    android:elevation="10dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginLeft="20dp"
+    android:textSize="25dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:background="@drawable/text"
+        android:layout_marginRight="20dp"
+        android:elevation="10dp"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="15dp"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:hint="Name"
+            android:layout_height="match_parent"
+            android:id="@+id/name"/>
+    </com.google.android.material.textfield.TextInputLayout><com.google.android.material.textfield.TextInputLayout/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Select Image"
+        android:background="@drawable/text"
+        android:layout_marginRight="20dp"
+        android:elevation="10dp"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="15dp"/>
+    <Button
+        android:layout_width="100dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/link_iamge"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+       android:background="@color/colorBlue"
+        android:layout_height="50dp"
+        android:text="Chọn ảnh"/>
+    <ImageView
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/nodata"
+        android:id="@+id/xemtruoc"
+        android:layout_width="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"/>
+    <Button
+        android:layout_width="100dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/save"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/botton_shape"
+        android:layout_height="50dp"
+        android:text="Xác Nhận"/>
+
+
+</TableLayout>

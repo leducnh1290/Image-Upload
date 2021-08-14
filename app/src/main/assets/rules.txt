@@ -1,0 +1,16 @@
+1.Chúng tôi sẽ không thu thập bất cứ dữ liệu gì từ bạn:
+- Ứng dụng này được phát triển để bạn có được 1 nơi lưu trữ những bức ảnh của bạn đạt được sự riêng tư tuyệt đối.Toàn bộ ảnh được gửi lên sever của chúng tôi sẽ được mã hoá hoàn toàn 1 chiều và không ai ngoài bạn có thể đụng vào trừ khi có mật khẩu được bạn đặt từ trước kể cả Người quản trị giúp bạn đạt được sự riêng tư tuyệt đối
+
+
+2.Dữ liệu của bạn có thể bị chúng tôi xoá mà không báo trước:
+- Chúng tôi hoàn toàn có quyền xoá những dữ liệu phản cảm, bôi nhọ danh dự người khác,những vấn đề liên quan đến chính trị mà không báo trước.Vui lòng sử dụng ứng dụng 1 cách văn minh
+
+
+3.Thậm chí bạn có thể bị band account mà không được báo trước:
+- Chúng tôi có quyền khoá tài khoản của bạn nếu bạn bị vi phạm nhiều lần vào chính sách của chúng tôi mà không hề báo trước.
+
+
+4.Ứng dụng này là miễn phí vì vậy thỉnh thoảng sẽ xuất hiện quảng cáo:
+- Tất nhiên rồi chúng tôi cần dựa vào quảng cáo để tiếp tục duy trì và phát triển ứng dụng tốt hơn.Nếu có lòng hãy ủng hộ chúng tôi bằng cách donate.
+
+                                   Developer by : Lê Đức Anh
