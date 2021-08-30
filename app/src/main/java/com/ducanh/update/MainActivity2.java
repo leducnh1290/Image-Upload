@@ -72,8 +72,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class MainActivity2 extends AppCompatActivity implements View.OnClickListener {
-    private static final String STATE_COUNTER = "counter";
-    private int mCounter;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private NetworkChecked isNetworkConnected = new NetworkChecked (this);
@@ -91,6 +89,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                    Toast.makeText (MainActivity2.this, "Chọn ảnh thành công vui lòng nhập pass ảnh và nhấn up ảnh", Toast.LENGTH_SHORT).show ();
                    hinhanh.setImageBitmap (uriToBitmap (result.getData ().getData ()));
                    linkhinhve = null;
+                   btmdown.setVisibility (View.INVISIBLE);
                }
                 }
             });
@@ -99,7 +98,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
     private FirebaseUser firebaseUser = firebaseAuth.getCurrentUser ();
     private byte[] hinhbyte;
     private FirebaseStorage firebaseStorage = FirebaseStorage.getInstance ();
-    private StorageReference storageRef = firebaseStorage.getReference ();
+    private StorageReference storageRef = firebaseStorage.getReferenceFromUrl ("gs://cachua-69f3b.appspot.com/image-up");
     private Button fideimage, btmdown, edit_profile;
     private String name;
     private UserProfile data = new UserProfile ();
@@ -129,14 +128,15 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         sharedPreferences = getSharedPreferences ("USER.txt", MODE_PRIVATE);
         editor = sharedPreferences.edit ();
         intent2 = new Intent (this, Login.class);
-        if (firebaseAuth.getInstance ().getCurrentUser () != null) {
+        if (firebaseAuth.getCurrentUser ()!= null) {
             if (firebaseUser.getDisplayName () != null) {
                 Toast.makeText (MainActivity2.this, "Welcome Back " + firebaseUser.getDisplayName (), Toast.LENGTH_SHORT).show ();
             } else {
                 Toast.makeText (MainActivity2.this, "Hello " + firebaseUser.getEmail (), Toast.LENGTH_SHORT).show ();
             }
         } else {
-            checksigin ();
+            startActivity (intent2);
+            finishAffinity ();
         }
         if (!isNetworkConnected.isNetworkConnected ()) {
             Dialogupdate ();
@@ -237,17 +237,6 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         bitmap.compress (Bitmap.CompressFormat.PNG, 100, stream);
         byte[] byteArray = stream.toByteArray ();
         return byteArray;
-    }
-
-    private void checksigin() {
-        boolean check = sharedPreferences.getBoolean ("REMEMBER", false);
-        if (check) {
-            editor.remove ("EMAIL REMEMBER");
-            editor.remove ("PASSWORD REMEMBER");
-        } else {
-            startActivity (intent2);
-            finishAffinity ();
-        }
     }
 
     public void getdatauser(FirebaseUser fb) {
@@ -415,7 +404,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                             chonanh.setEnabled (false);
                             ten.setEnabled (false);
                             Calendar calendar = Calendar.getInstance ();
-                            final StorageReference storageReference = storageRef.child ("image-" + ten.getText ().toString () + firebaseUser.getDisplayName () + "-" + calendar.getTimeInMillis () + ".png");
+                            final StorageReference storageReference = storageRef.child ("image-" + ten.getText ().toString ()+"-" + firebaseUser.getDisplayName () + "-" + calendar.getTimeInMillis () + ".png");
                             final UploadTask uploadTask = storageReference.putBytes (hinhbyte);
                             uploadTask.addOnFailureListener (new OnFailureListener () {
                                 @Override
@@ -499,6 +488,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
 private void Loading(){
     progressDialog.show ();
     progressDialog.setContentView (R.layout.loading_upload);
+    progressDialog.setCancelable (false);
     progressDialog.getWindow ().setBackgroundDrawableResource (android.R.color.transparent);
 }
     private void checkAndRequestPermissions() {

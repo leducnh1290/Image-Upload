@@ -2,6 +2,9 @@ package com.ducanh.update;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,12 +22,14 @@ import static android.view.View.VISIBLE;
 public class ForgotPassword extends AppCompatActivity {
     private TextInputEditText email;
     private Button sendpass;
+    ProgressDialog progressDialog;
     private boolean b = false;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance ();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_forgot_password);
+        progressDialog = new ProgressDialog(this);
         Init ();
         sendpass.setEnabled (false);
         email.addTextChangedListener (new TextWatcher () {
@@ -57,16 +62,24 @@ public class ForgotPassword extends AppCompatActivity {
         email = findViewById (R.id.sendemail);
         sendpass = findViewById(R.id.btnsend);
     }
+    private void Loading() {
+        progressDialog.show ();
+        progressDialog.setContentView (R.layout.loading_upload);
+        progressDialog.setCancelable (false);
+        progressDialog.getWindow ().setBackgroundDrawableResource (android.R.color.transparent);
+    }
     private void resetPassword(final String email) {
         firebaseAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        Loading ();
                         if (task.isSuccessful()) {
                             Toast.makeText(ForgotPassword.this, "Reset email instructions sent to " + email, Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(ForgotPassword.this, email + " does not exist", Toast.LENGTH_LONG).show();
                         }
+                       progressDialog.dismiss ();
                     }
                 });
     }

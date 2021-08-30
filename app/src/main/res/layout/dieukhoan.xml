@@ -24,8 +24,8 @@
 <ScrollView
     android:layout_marginTop="5dp"
     android:layout_width="match_parent"
-    android:padding="20dp"
-    android:layout_height="540dp">
+    android:padding="10dp"
+    android:layout_height="530dp">
 
     <fragment
         android:id="@+id/fragment"
@@ -33,37 +33,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </ScrollView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_below="@+id/web"
-        android:layout_height="20dp"
-        android:gravity="right"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
-        android:orientation="horizontal">
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:text="Tôi đồng ý với tất cả "
-            android:textColor="@color/color_gray"
-            android:id="@+id/oknhoa"
-            android:textStyle="italic"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="điều khoản"
-            android:textColor="@color/color_red"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/color_gray"
-            android:gravity="center_horizontal"
-            android:text=" của ứng dụng"
-            android:textSize="15dp"
-            android:textStyle="italic" />
-    </LinearLayout>
 </LinearLayout>

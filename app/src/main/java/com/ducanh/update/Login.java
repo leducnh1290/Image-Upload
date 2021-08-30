@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,7 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 public class Login extends AppCompatActivity  {
     private static int countupdate = 4;
     private TextInputEditText email,password;
-    private  HandlingLogin handlingLogin = new HandlingLogin ();
+    private ProgressDialog progressDialog;
     FirebaseDatabase database = FirebaseDatabase.getInstance ();
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance ();
     public static  CheckBox remember;
@@ -43,6 +46,8 @@ public class Login extends AppCompatActivity  {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
         init ();
+        Context context;
+        progressDialog = new ProgressDialog(this);
         remember.setChecked (getSharedPreferences ("USER.txt",MODE_PRIVATE).getBoolean ("REMEMBER",false));
         email.setText (getSharedPreferences (getString (R.string.file_name),MODE_PRIVATE).getString ("EMAIL REMEMBER",""));
         password.setText (getSharedPreferences (getString (R.string.file_name),MODE_PRIVATE).getString ("PASSWORD REMEMBER",""));
@@ -86,6 +91,7 @@ public class Login extends AppCompatActivity  {
                     Toast.makeText (getApplicationContext (), R.string.empty, Toast.LENGTH_SHORT).show ();
                     return;
                 }else{
+                    Loading ();
                    sigin (email.getText ().toString (),password.getText ().toString ());
                 }
             }
@@ -129,6 +135,7 @@ public class Login extends AppCompatActivity  {
                     } else {
                         Toast.makeText (Login.this, R.string.login_fail, Toast.LENGTH_SHORT).show ();
                     }
+                    progressDialog.cancel ();
                 }
 
             });
@@ -142,6 +149,12 @@ public class Login extends AppCompatActivity  {
             remember = findViewById (R.id.remember);
             forgot = findViewById (R.id.forgot);
         }
+    private void Loading() {
+        progressDialog.show ();
+        progressDialog.setContentView (R.layout.loading_upload);
+        progressDialog.setCancelable (false);
+        progressDialog.getWindow ().setBackgroundDrawableResource (android.R.color.transparent);
+    }
         private void Dialogupdate () {
             final AlertDialog dialog = new AlertDialog.Builder (this)
                     .setTitle ("Update")

@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -36,6 +38,8 @@ public class ProfileEdit extends AppCompatActivity {
     private static final int REQUEST = 1;
     Button save,image;
     Bitmap bitmap;
+    Context context;
+    private ProgressDialog progressDialog;
     private FirebaseStorage firebaseStorage = FirebaseStorage.getInstance ();
     private StorageReference storageRef = firebaseStorage.getReferenceFromUrl ("gs://cachua-69f3b.appspot.com/avatar");
     ImageView xemtruoc;
@@ -46,6 +50,8 @@ public class ProfileEdit extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_profile_edit);
         Init ();
+        Context context;
+        progressDialog = new ProgressDialog(this);
         image.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
@@ -55,11 +61,12 @@ public class ProfileEdit extends AppCompatActivity {
        save.setOnClickListener (new View.OnClickListener () {
            @Override
            public void onClick(View v) {
+               Loading ();
                if(name.getText ().toString ().trim ().trim ().length ()>0&&hinhbyte==null){
                    save.setEnabled (false);
                    image.setEnabled (false);
                    FirebaseUser user = FirebaseAuth.getInstance ().getCurrentUser ();
-                   UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder ()
+                   final UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder ()
                            .setDisplayName (name.getText ().toString ())
                            .build ();
                    user.updateProfile (profileUpdates)
@@ -70,6 +77,7 @@ public class ProfileEdit extends AppCompatActivity {
                                        Toast.makeText (ProfileEdit.this, "Thành công update tên", Toast.LENGTH_SHORT).show ();
                                        Intent intent = new Intent (ProfileEdit.this, MainActivity2.class);
                                        startActivity (intent);
+                                       progressDialog.cancel ();
                                    }
                                }
                            });
@@ -163,10 +171,12 @@ private  void upnameandiamge(final String name  , byte[] hinh){
                                         Toast.makeText (ProfileEdit.this, "Thành công update tên và avatar", Toast.LENGTH_SHORT).show ();
                                         Intent intent = new Intent (ProfileEdit.this, MainActivity2.class);
                                         startActivity (intent);
+                                        progressDialog.cancel ();
                                     }else{
                                         Toast.makeText (ProfileEdit.this, "Có lỗi xảy ra", Toast.LENGTH_SHORT).show ();
                                         save.setEnabled (true);
                                         image.setEnabled (true);
+                                        progressDialog.cancel ();
                                     }
                                 }
                             });
@@ -175,6 +185,12 @@ private  void upnameandiamge(final String name  , byte[] hinh){
         }
     });
 }
+    private void Loading() {
+        progressDialog.show ();
+        progressDialog.setContentView (R.layout.loading_upload);
+        progressDialog.setCancelable (false);
+        progressDialog.getWindow ().setBackgroundDrawableResource (android.R.color.transparent);
+    }
     public void upanhtosever() {
         Calendar calendar = Calendar.getInstance ();
         final StorageReference storageReference = storageRef.child ("avatar-" + FirebaseAuth.getInstance ().getCurrentUser ().getDisplayName () + "-" + calendar.getTimeInMillis () + ".png");
@@ -203,10 +219,12 @@ private  void upnameandiamge(final String name  , byte[] hinh){
                                             Toast.makeText (ProfileEdit.this, "Thành công update avatar", Toast.LENGTH_SHORT).show ();
                                             Intent intent = new Intent (ProfileEdit.this, MainActivity2.class);
                                             startActivity (intent);
+                                            progressDialog.cancel ();
                                         } else {
                                             Toast.makeText (ProfileEdit.this, "Có lỗi xảy ra", Toast.LENGTH_SHORT).show ();
                                             save.setEnabled (true);
                                             image.setEnabled (true);
+                                            progressDialog.cancel ();
                                         }
                                     }
                                 });
