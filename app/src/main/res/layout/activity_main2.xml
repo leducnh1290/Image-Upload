@@ -31,6 +31,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ten"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/input_pass" />
@@ -76,22 +77,6 @@
         app:layout_constraintHorizontal_bias="0.363"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/text"
-        android:elevation="10dp"
-        android:padding="10dp"
-        android:text="@string/get_image"
-        android:textColor="@color/color_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chonanh" />
 
     <Button
         android:id="@+id/edit_profile"
@@ -174,8 +159,9 @@
     <ImageView
         android:id="@+id/hinh"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="10dp"
         android:background="@color/color_white"
@@ -184,7 +170,9 @@
         app:layout_constraintBottom_toTopOf="@+id/downlaod"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chonanh"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/downlaod"

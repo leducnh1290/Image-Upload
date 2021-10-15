@@ -9,7 +9,9 @@
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textAllCaps="true"
         android:layout_marginLeft="10dp"
         android:text="Điều khoản sử dụng"
         android:textColor="@color/color_black"/>
@@ -17,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:textSize="15dp"
         android:layout_marginLeft="10dp"
         android:text="@string/please_read_rules"
@@ -25,12 +28,15 @@
     android:layout_marginTop="5dp"
     android:layout_width="match_parent"
     android:padding="10dp"
-    android:layout_height="530dp">
+    android:layout_marginBottom="80dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_height="match_parent">
 
     <fragment
         android:id="@+id/fragment"
         android:name="com.ducanh.update.rulesMain"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 </ScrollView>
 </LinearLayout>

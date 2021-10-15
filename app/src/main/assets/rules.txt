@@ -12,5 +12,3 @@
 
 4.Ứng dụng này là miễn phí vì vậy thỉnh thoảng sẽ xuất hiện quảng cáo:
 - Tất nhiên rồi chúng tôi cần dựa vào quảng cáo để tiếp tục duy trì và phát triển ứng dụng tốt hơn.Nếu có lòng hãy ủng hộ chúng tôi bằng cách donate.
-
-                                   Developer by : Lê Đức Anh

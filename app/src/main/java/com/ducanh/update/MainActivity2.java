@@ -33,6 +33,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.ParcelFileDescriptor;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -82,15 +83,17 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
             new ActivityResultContracts.StartActivityForResult (), new ActivityResultCallback<ActivityResult> () {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-               if(result.getResultCode ()==RESULT_OK){
-                   Intent intent = result.getData ();
-                   image2 = result.getData ().getData ();
-                   hinhbyte = Img_to_byte (uriToBitmap (intent.getData ()));
-                   Toast.makeText (MainActivity2.this, "Chọn ảnh thành công vui lòng nhập pass ảnh và nhấn up ảnh", Toast.LENGTH_SHORT).show ();
-                   hinhanh.setImageBitmap (uriToBitmap (result.getData ().getData ()));
-                   linkhinhve = null;
-                   btmdown.setVisibility (View.INVISIBLE);
-               }
+                    if (result.getResultCode () == RESULT_OK) {
+                        Intent intent = result.getData ();
+                        image2 = result.getData ().getData ();
+                        hinhbyte = Img_to_byte (uriToBitmap (intent.getData ()));
+                        Toast.makeText (MainActivity2.this, "Chọn ảnh thành công vui lòng nhập pass ảnh và nhấn up ảnh", Toast.LENGTH_SHORT).show ();
+                        hinhanh.setImageBitmap (uriToBitmap (result.getData ().getData ()));
+                        linkhinhve = null;
+                        linkhinh = null;
+                        name = null;
+                        btmdown.setVisibility (View.INVISIBLE);
+                    }
                 }
             });
     private ProgressDialog progressDialog;
@@ -117,6 +120,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         setContentView (R.layout.activity_main2);
         init ();
         setview ();
+
         progressDialog = new ProgressDialog (this);
         btmdown.setVisibility (View.INVISIBLE);
         hinhanh.setImageResource (R.drawable.nodata);
@@ -128,11 +132,11 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         sharedPreferences = getSharedPreferences ("USER.txt", MODE_PRIVATE);
         editor = sharedPreferences.edit ();
         intent2 = new Intent (this, Login.class);
-        if (firebaseAuth.getCurrentUser ()!= null) {
-            if (firebaseUser.getDisplayName () != null) {
-                Toast.makeText (MainActivity2.this, "Welcome Back " + firebaseUser.getDisplayName (), Toast.LENGTH_SHORT).show ();
-            } else {
+        if (firebaseAuth.getCurrentUser () != null) {
+            if (firebaseUser.getDisplayName () == null) {
                 Toast.makeText (MainActivity2.this, "Hello " + firebaseUser.getEmail (), Toast.LENGTH_SHORT).show ();
+            } else {
+                Toast.makeText (MainActivity2.this, "Welcome Back " + firebaseUser.getDisplayName (), Toast.LENGTH_SHORT).show ();
             }
         } else {
             startActivity (intent2);
@@ -240,15 +244,19 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
     }
 
     public void getdatauser(FirebaseUser fb) {
-        if (firebaseAuth.getCurrentUser () != null && firebaseUser.getPhotoUrl () != null && firebaseUser.getDisplayName () != null) {
+        if (firebaseAuth.getCurrentUser () != null && firebaseUser.getPhotoUrl ().toString () != null && firebaseUser.getDisplayName ().toString () != null) {
             user_name.setText (data.Name (fb));
+            Log.d ("th1", firebaseUser.getEmail ());
             Picasso.with (MainActivity2.this).load (data.Image_User (fb)).placeholder (R.drawable.ic_person_black_24dp).into (avatar);
-        } else if(firebaseAuth.getCurrentUser ()!=null && firebaseUser.getDisplayName ()!=null&&firebaseUser.getPhotoUrl ()==null) {
-            user_name.setText (firebaseUser.getDisplayName ());;
+        } else if (firebaseAuth.getCurrentUser () != null && firebaseAuth.getCurrentUser ().getDisplayName () != null && firebaseAuth.getCurrentUser ().getPhotoUrl () == null) {
+            user_name.setText (firebaseUser.getDisplayName ());
+            ;
+            Log.d ("th2", firebaseUser.getEmail ());
             avatar.setImageResource (R.drawable.ic_person_black_24dp);
-        }else if(firebaseAuth.getCurrentUser ()!=null && firebaseUser.getPhotoUrl ()!=null&&firebaseUser.getDisplayName ()==null){
+        } else if (firebaseAuth.getCurrentUser () != null && firebaseUser.getPhotoUrl () != null && firebaseUser.getDisplayName ().toString () == null) {
+            Log.d ("th3", firebaseUser.getEmail ());
             user_name.setText (firebaseUser.getEmail ());
-            Picasso.with (MainActivity2.this).load (firebaseUser.getPhotoUrl ()).placeholder (R.drawable.ic_person_black_24dp).into(avatar);
+            Picasso.with (MainActivity2.this).load (firebaseUser.getPhotoUrl ()).placeholder (R.drawable.ic_person_black_24dp).into (avatar);
         }
     }
 
@@ -278,7 +286,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
             Dialogupdate ();
         } else {
             firebaseAuth.signOut ();
-            if(email!=""&&password!=""){
+            if (email != "" && password != "") {
                 editor.putString ("EMAIL REMEMBER", email);
                 editor.putString ("PASSWORD REMEMBER", password);
             }
@@ -309,7 +317,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.edit_profile:
                 if (isNetworkConnected.isNetworkConnected ()) {
-                  //  showDialog (this, "Hello");
+                    //  showDialog (this, "Hello");
                     Intent intent2 = new Intent (MainActivity2.this, ProfileEdit.class);
                     startActivity (intent2);
                 } else {
@@ -327,15 +335,15 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                         edit_profile.setEnabled (false);
                         logout.setEnabled (false);
                         Loading ();
-                        myref.child (ten.getText ().toString ()).addValueEventListener (new ValueEventListener () {
+                        myref.child (md5.MD5 (ten.getText ().toString ().trim ())).addValueEventListener (new ValueEventListener () {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 try {
                                     linkhinhve = snapshot.getValue ().toString ();
                                     btmdown.setVisibility (View.VISIBLE);
-                                    Picasso.with (getApplicationContext ()).load (snapshot.getValue ().toString ()).placeholder (R.drawable.load).into (hinhanh);
-                                    name = ten.getText ().toString ();
-                                    Toast.makeText (MainActivity2.this, "Thành công lấy ảnh với password: " + ten.getText ().toString (), Toast.LENGTH_SHORT).show ();
+                                    Picasso.with (getApplicationContext ()).load (linkhinhve).placeholder (R.drawable.load).into (hinhanh);
+                                    name = ten.getText ().toString ().trim ();
+                                    Toast.makeText (MainActivity2.this, "Thành công lấy ảnh với password: " + ten.getText ().toString ().trim (), Toast.LENGTH_SHORT).show ();
                                     chonanh.setEnabled (true);
                                     upanh.setEnabled (true);
                                     edit_profile.setEnabled (true);
@@ -404,7 +412,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                             chonanh.setEnabled (false);
                             ten.setEnabled (false);
                             Calendar calendar = Calendar.getInstance ();
-                            final StorageReference storageReference = storageRef.child ("image-" + ten.getText ().toString ()+"-" + firebaseUser.getDisplayName () + "-" + calendar.getTimeInMillis () + ".png");
+                            final StorageReference storageReference = storageRef.child ("image-" + ten.getText ().toString ().trim () + "-" + firebaseUser.getDisplayName () + "-" + calendar.getTimeInMillis () + ".png");
                             final UploadTask uploadTask = storageReference.putBytes (hinhbyte);
                             uploadTask.addOnFailureListener (new OnFailureListener () {
                                 @Override
@@ -424,7 +432,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                                         public void onSuccess(Uri uri) {
                                             linkhinh = uri.toString ();
                                             HashMap<String, Object> map = new HashMap<> ();
-                                            map.put (ten.getText ().toString (), linkhinh);
+                                            map.put (md5.MD5 (ten.getText ().toString ().trim ()), linkhinh);
                                             myref.updateChildren (map);
                                             myref.updateChildren (map).addOnCompleteListener (new OnCompleteListener<Void> () {
                                                 @Override
@@ -485,12 +493,13 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         }
     }
 
-private void Loading(){
-    progressDialog.show ();
-    progressDialog.setContentView (R.layout.loading_upload);
-    progressDialog.setCancelable (false);
-    progressDialog.getWindow ().setBackgroundDrawableResource (android.R.color.transparent);
-}
+    private void Loading() {
+        progressDialog.show ();
+        progressDialog.setContentView (R.layout.loading_upload);
+        progressDialog.setCancelable (false);
+        progressDialog.getWindow ().setBackgroundDrawableResource (android.R.color.transparent);
+    }
+
     private void checkAndRequestPermissions() {
         String[] permissions = new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -538,8 +547,6 @@ private void Loading(){
             DownloadManager downloadManager = (DownloadManager) getSystemService (Context.DOWNLOAD_SERVICE);
             if (downloadManager != null) {
                 downloadManager.enqueue (request);
-                linkhinhve = null;
-                btmdown.setVisibility (View.INVISIBLE);
                 ten.setText ("");
                 name = null;
             }

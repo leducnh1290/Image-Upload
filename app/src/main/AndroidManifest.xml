@@ -29,6 +29,7 @@
             android:theme="@style/Profile" />
         <activity
             android:name=".MainActivity2"
+            android:screenOrientation="portrait"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:theme="@style/MainTheme"/>
         <activity
